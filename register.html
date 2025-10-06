@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Registration</title>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        background-image: url(image/img1.png);
+        background-size: cover;
+      }
+
+      .container {
+        background: linear-gradient(135deg, #1a2a47 0%, #4a3e5c 100%);
+        color: #ffffff;
+        padding: 30px 40px;
+        margin-left: 35%;
+        margin-top: 5%;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #218838;
+      }
+
+      .error-message {
+        color: #dc3545;
+        font-size: 0.85em;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .success-message {
+        color: #28a745;
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      header {
+        width: 1140px;
+        max-width: 80%;
+        margin: auto;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 100;
+      }
+
+      header a {
+        color: #57e4a9;
+        margin-right: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="#">About Us</a>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Register Now & Start Exploring</h1>
+      <form id="registrationForm" onsubmit="return validateForm()">
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Gmail Address:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="user@gmail.com"
+            required
+          />
+          <small id="emailError" class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <button type="submit">Register Now</button>
+      </form>
+      <p id="successMessage" class="success-message"></p>
+    </div>
+
+    <script>
+      function validateForm() {
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+        const successMessage = document.getElementById("successMessage");
+
+        emailError.textContent = "";
+        successMessage.textContent = "";
+
+        let isValid = true;
+
+        const emailValue = emailInput.value.trim();
+
+        const gmailPattern = /^[\w.-]+@gmail\.com$/i;
+
+        if (!gmailPattern.test(emailValue)) {
+          emailError.textContent =
+            "❌ Please enter a valid Gmail address (e.g., user@gmail.com).";
+          emailInput.focus();
+          isValid = false;
+        }
+
+        if (isValid) {
+          successMessage.textContent =
+            "✅ Registration successful! Welcome to the club.";
+          document.getElementById("registrationForm").reset();
+          return false;
+        }
+
+        return isValid;
+      }
+    </script>
+  </body>
+</html>
